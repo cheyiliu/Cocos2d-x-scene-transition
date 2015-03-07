@@ -10,7 +10,7 @@ unsigned int HelloWorld::sIndex = -1;
 void HelloWorld::doTrans(float dt){
 	log("do trans from %d", sIndex);
 	Director::getInstance()->replaceScene(
-			TransitionCrossFade::create(1, HelloWorld::scene())
+			TransitionCrossFade::create(0.5, HelloWorld::scene())
 			);
 }
 
@@ -25,6 +25,20 @@ Scene* HelloWorld::scene()
     // add layer as a child to scene
     scene->addChild(layer);
 
+    // add the 'mask' layer
+	{
+    	float width = designResolutionSize.width;
+    	float height = 100;//估计值
+		auto layerBot = LayerColor::create(Color4B(0, 0, 0, 0xFF), width, height);
+		layerBot->setAnchorPoint(Vec2(0, 0));
+		layerBot->setPosition(0, 0);
+		scene->addChild(layerBot);
+
+		auto layerTop = LayerColor::create(Color4B(0, 0, 0, 0xFF), width, height);
+		layerTop->setAnchorPoint(Vec2(0, 0));
+		layerTop->setPosition(0, designResolutionSize.height - height);
+		scene->addChild(layerTop);
+	}
     // return the scene
     return scene;
 }
@@ -76,13 +90,13 @@ bool HelloWorld::init()
 	    sprite->setPosition(Vec2(visibleSize / 2) + origin);
 
 	    // run the scale action
-	    sprite->runAction(ScaleTo::create(5, 1.1f));
+	    sprite->runAction(ScaleTo::create(4, 1.08f));
 
 	    // add the sprite as a child to this layer
 	    this->addChild(sprite);
 
 	    // prepare to do trans
-	    scheduleOnce(schedule_selector(HelloWorld::doTrans), 5);
+	    scheduleOnce(schedule_selector(HelloWorld::doTrans), 4);
 	}
 
 
