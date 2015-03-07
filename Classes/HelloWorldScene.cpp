@@ -5,7 +5,7 @@ USING_NS_CC;
 
 bool HelloWorld::sResReady = false;
 std::vector<std::string> HelloWorld::sResVector;
-int HelloWorld::sIndex = -1;
+unsigned int HelloWorld::sIndex = -1;
 
 void HelloWorld::doTrans(float dt){
 	log("do trans from %d", sIndex);
@@ -75,8 +75,13 @@ bool HelloWorld::init()
 	    // position the sprite on the center of the screen
 	    sprite->setPosition(Vec2(visibleSize / 2) + origin);
 
+	    // run the scale action
+	    sprite->runAction(ScaleTo::create(5, 1.1f));
+
 	    // add the sprite as a child to this layer
 	    this->addChild(sprite);
+
+	    // prepare to do trans
 	    scheduleOnce(schedule_selector(HelloWorld::doTrans), 5);
 	}
 

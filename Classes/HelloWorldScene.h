@@ -23,7 +23,7 @@ public:
     void doTrans(float dt);
     static std::vector<std::string> sResVector;
     static bool sResReady;
-    static int sIndex;
+    static unsigned int sIndex;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

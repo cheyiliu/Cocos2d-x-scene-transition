@@ -91,7 +91,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->runWithScene(scene);
 
     // play the bg music
-    SimpleAudioEngine::sharedEngine()->playBackgroundMusic("The Last Goodbye.mp3", true);
+    SimpleAudioEngine::getInstance()->playBackgroundMusic("The Last Goodbye.mp3", true);
     return true;
 }
 
@@ -100,7 +100,7 @@ void AppDelegate::applicationDidEnterBackground() {
     Director::getInstance()->stopAnimation();
 
     // if you use SimpleAudioEngine, it must be pause
-    SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
+    SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
 }
 
 // this function will be called when the app is active again
@@ -108,5 +108,5 @@ void AppDelegate::applicationWillEnterForeground() {
     Director::getInstance()->startAnimation();
 
     // if you use SimpleAudioEngine, it must resume here
-     SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
+     SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
 }
