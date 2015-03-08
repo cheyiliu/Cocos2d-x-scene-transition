@@ -33,7 +33,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
         glview = GLViewImpl::create("Cpp Empty Test");
         director->setOpenGLView(glview);
     }
-
+//    glview->setFrameSize(1024/2, 576/2);//改变参数测试屏幕适配
     director->setOpenGLView(glview);
 
     // Set the design resolution
@@ -44,7 +44,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::EXACT_FIT);
 #endif
 
-	Size frameSize = glview->getFrameSize();
+//	Size frameSize = glview->getFrameSize();
     
     vector<string> searchPath;
 
@@ -54,21 +54,21 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // this can make sure that the resource's height could fit for the height of design resolution.
 
     // if the frame's height is larger than the height of medium resource size, select large resource.
-	if (frameSize.height > mediumResource.size.height)
-	{
-        searchPath.push_back(largeResource.directory);
-
-        director->setContentScaleFactor(MIN(largeResource.size.height/designResolutionSize.height, largeResource.size.width/designResolutionSize.width));
-	}
-    // if the frame's height is larger than the height of small resource size, select medium resource.
-    else if (frameSize.height > smallResource.size.height)
-    {
-        searchPath.push_back(mediumResource.directory);
-        
-        director->setContentScaleFactor(MIN(mediumResource.size.height/designResolutionSize.height, mediumResource.size.width/designResolutionSize.width));
-    }
-    // if the frame's height is smaller than the height of medium resource size, select small resource.
-	else
+//	if (frameSize.height > mediumResource.size.height)
+//	{
+//        searchPath.push_back(largeResource.directory);
+//
+//        director->setContentScaleFactor(MIN(largeResource.size.height/designResolutionSize.height, largeResource.size.width/designResolutionSize.width));
+//	}
+//    // if the frame's height is larger than the height of small resource size, select medium resource.
+//    else if (frameSize.height > smallResource.size.height)
+//    {
+//        searchPath.push_back(mediumResource.directory);
+//
+//        director->setContentScaleFactor(MIN(mediumResource.size.height/designResolutionSize.height, mediumResource.size.width/designResolutionSize.width));
+//    }
+//    // if the frame's height is smaller than the height of medium resource size, select small resource.
+//	else
     {
         searchPath.push_back(smallResource.directory);
 
