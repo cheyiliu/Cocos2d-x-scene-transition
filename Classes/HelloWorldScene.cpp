@@ -10,7 +10,7 @@ unsigned int HelloWorld::sIndex = -1;
 void HelloWorld::doTrans(float dt){
 	log("do trans from %d", sIndex);
 	Director::getInstance()->replaceScene(
-			TransitionCrossFade::create(0.5, HelloWorld::scene())
+			TransitionCrossFade::create(1, HelloWorld::scene())
 			);
 }
 
@@ -90,7 +90,13 @@ bool HelloWorld::init()
 	    sprite->setPosition(Vec2(visibleSize / 2) + origin);
 
 	    // run the scale action
-	    sprite->runAction(ScaleTo::create(4, 1.08f));
+	    // 细节，用delay配合TransitionCrossFade的时间，这样过度不会卡顿
+//	    sprite->runAction(ScaleTo::create(4, 1.08f));
+	    auto actionSeq = Sequence::create(
+	    		DelayTime::create(1),
+				ScaleTo::create(4, 1.08f),
+	            nullptr);
+	    sprite->runAction(actionSeq);
 
 	    // add the sprite as a child to this layer
 	    this->addChild(sprite);
